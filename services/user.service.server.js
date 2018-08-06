@@ -18,6 +18,10 @@ module.exports = app => {
             });
     };
 
+    logout = (req, res) => {
+        req.session.invalidate();
+    }
+
     currentUser = (req, res) => {
         const currentUser = req.session['currentUser'];
         if (currentUser) {
@@ -28,12 +32,12 @@ module.exports = app => {
         }
     };
 
-
-    app.post('/user', (req, res) =>
+    createUser = (req, res) => {
         userModel.createUser(req.body).then(user => res.send(user))
-    );
+    };
 
-    // app.post('/user', createUser);
+    app.get('/logout', logout);
+    app.post('/user', createUser);
     app.get('/currentUser', currentUser);
     app.get('/user', findAllUsers);
     app.post('/login', login);
