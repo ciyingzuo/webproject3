@@ -5,11 +5,10 @@ module.exports = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'courseModel'
     },
-    seat: Number,
-    student: [
+    lesson: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'userModel'
+            ref: 'lessonModel'
         }
     ]
-}, {collection: 'section'});
+}, {collection: 'module'});

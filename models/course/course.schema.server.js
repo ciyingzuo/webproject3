@@ -1,15 +1,14 @@
 const mongoose = require('mongoose');
 module.exports = mongoose.Schema({
     title: String,
-    course: {
+    module: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'courseModel'
+        ref: 'moduleModel'
     },
-    seat: Number,
-    student: [
+    section: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'userModel'
+            ref: 'sectionModel'
         }
     ]
-}, {collection: 'section'});
+}, {collection: 'course'});

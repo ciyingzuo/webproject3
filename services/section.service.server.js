@@ -6,7 +6,7 @@ module.exports = app => {
     sectionModel
       .enroll(currentUser._id, req.params['sectionId'])
       .then(status => res.sendStatus(200))
-  })
+  });
 
   app.get('/api/section', (req, res) =>
     sectionModel
