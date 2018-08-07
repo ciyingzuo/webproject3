@@ -15,11 +15,11 @@ findUserById = userId =>
 findUserByIdExpanded = userId =>
     userModel
         .findById(userId)
-        .populate('sections')
+        .populate('section')
         .exec();
 
 createUser = user => {
-    userModel.create(user).then(user => {return user});
+    return userModel.create(user);
 };
 
 module.exports = {

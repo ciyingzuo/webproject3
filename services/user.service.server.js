@@ -9,7 +9,6 @@ module.exports = app => {
             });
 
     login = (req, res) => {
-        console.log(req.body);
         const user = req.body;
         userModel.findUserByCredentials(user.username, user.password)
             .then(user => {
@@ -19,7 +18,7 @@ module.exports = app => {
     };
 
     logout = (req, res) => {
-        req.session.invalidate();
+        req.session.destroy();
     }
 
     currentUser = (req, res) => {
@@ -33,7 +32,10 @@ module.exports = app => {
     };
 
     createUser = (req, res) => {
-        userModel.createUser(req.body).then(user => res.send(user))
+        userModel.createUser(req.body).then(user => {
+            req.session['currentUser'] = user;
+            res.send(req.session['currentUser']);
+        });
     };
 
     app.get('/logout', logout);

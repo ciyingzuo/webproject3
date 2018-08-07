@@ -1,13 +1,12 @@
 const mongoose = require('mongoose');
 module.exports = mongoose.Schema({
     title: String,
-    type: String,
-    text: String,
-    subText: String,
-    widget:
+    courseId: String,
+    seat: Number,
+    student: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'lessonModel'
+            ref: 'userModel'
         }
-
-}, {collection: 'widget'});
+    ]
+}, {collection: 'section'});
