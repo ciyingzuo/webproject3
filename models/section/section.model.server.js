@@ -28,7 +28,9 @@ enroll = (sectionId) => {
 drop = (sectionId) => {
     sectionModel.findById(sectionId).then
     (section => {
-        sectionModel.update({_id: section._id}, {seat: (section.seat + 1)})
+        // section.seat--;
+        // return section.save();
+        return sectionModel.update({_id: section._id}, {seat: (section.seat + 1)})
     });
 }
 

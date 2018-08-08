@@ -18,13 +18,14 @@ findUserByIdExpanded = userId =>
         .populate('section')
         .exec();
 
-findUser = user => {
-    return userModel.findOne({username: user.username});
+findUser = username => {
+    return userModel.findOne({username: username});
 }
 
 updateUser = user => {
     return userModel.update({_id: user._id}, {emailAddress: user.emailAddress, phoneNumber: user.phoneNumber});
 };
+
 deleteUser = user => {
     return userModel.remove({_id: user._id});
 }

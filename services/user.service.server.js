@@ -12,8 +12,12 @@ module.exports = app => {
         const user = req.body;
         userModel.findUserByCredentials(user.username, user.password)
             .then(user => {
-                req.session['currentUser'] = user;
-                res.send(req.session['currentUser']);
+                if(user) {
+                    req.session['currentUser'] = user;
+                    res.send(req.session['currentUser']);
+                } else {
+                    res.sendStatus(403)
+                }
             });
     };
 
