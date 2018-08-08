@@ -38,9 +38,23 @@ module.exports = app => {
         });
     };
 
+    updateUser= (req, res) => {
+        userModel.updateUser(req.body).then(user => {
+            res.sendStatus(200);
+        });
+    }
+
+    deleteUser = (req, res) => {
+        userModel.deleteUser(req.body).then(user => {
+            res.sendStatus(200);
+        });
+    }
+
     app.get('/logout', logout);
     app.post('/user', createUser);
     app.get('/currentUser', currentUser);
     app.get('/user', findAllUsers);
     app.post('/login', login);
+    app.put('/user', updateUser);
+    app.delete('/user', deleteUser);
 };

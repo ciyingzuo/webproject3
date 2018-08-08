@@ -3,16 +3,27 @@ var mongoose = require('mongoose');
 var enrollmentSchema = require('./enrollment.schema.server');
 
 var enrollmentModel = mongoose.model('EnrollmentModel', enrollmentSchema);
-enroll = (enrollment) =>
-    enrollmentModel.create(enrollment);
+enroll = (userId, sectionId) => {
+    enrollmentModel.remove({user: userId, section: sectionId});
+    return enrollmentModel.create({
+        user: userId,
+        section: sectionId
+    });
+}
 
-findSectionForStudent = (studentId) => {
-    return enrollmentModel
-        .find({student: studentId}).populate('section')
+findSectionForUser = (userId) => {
+    return enrollmentModel.find({user: userId}).populate('section')
+        .exec();
+}
+
+drop = (userId, sectionId) => {
+    return enrollmentModel.remove({user: userId, section: sectionId})
         .exec();
 }
 
 module.exports = {
     enroll,
-    findSectionForStudent,
-};
+    findSectionForUser,
+    drop
+}
+;

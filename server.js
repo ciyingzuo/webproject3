@@ -25,7 +25,7 @@ mongoose.connect('mongodb://localhost:27017/local').then(promise => {console.log
 
 const userService = require('./services/user.service.server'); //(app);
 userService(app);
-
+require('./services/enrollment.service.server')(app);
 require('./services/section.service.server')(app);
 
 app.listen(3000);

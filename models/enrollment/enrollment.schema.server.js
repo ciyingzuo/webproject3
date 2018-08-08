@@ -5,7 +5,7 @@ module.exports = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'SectionModel'
     },
-    student: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'UserModel'
     },

@@ -16,31 +16,22 @@ createSection = section =>
 findSection = sectionId =>
     sectionModel.findById(sectionId);
 
-enroll = (userId, sectionId) => {
+enroll = (sectionId) => {
     sectionModel.findById(sectionId).then
     (section => {
         sectionModel.update({_id: sectionId}, {seat: (section.seat - 1)})
     });
-    userModel.findUserById(userId)
-        .then(user => {
-            user.section.pull(sectionId);
-            user.section.push(sectionId);
-            return user.save();
-        });
-    return userModel.findUserById(userId)
 }
 
-drop = (userId, sectionId) => {
+drop = (sectionId) => {
     sectionModel.findById(sectionId).then
     (section => {
-        sectionModel.update({_id: sectionId}, {seat: section.seat + 1})
+        sectionModel.update({_id: sectionId}, {seat: (section.seat + 1)})
     });
-    userModel.findUserById(userId)
-        .then(user => {
-            user.section.pull(sectionId);
-            return user.save();
-        });
-    return userModel.findUserById(userId)
+}
+
+deleteSection = section => {
+    return sectionModel.remove({_id: section._id})
 }
 
 
@@ -54,5 +45,6 @@ module.exports = {
     findAllSections,
     findAllSectionsForCourse,
     createSection,
-    updateSection
+    updateSection,
+    deleteSection
 };

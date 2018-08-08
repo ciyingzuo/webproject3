@@ -9,11 +9,7 @@ const mongoose = require('mongoose');
     testUser: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'userModel'
-    },
-    section: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'SectionModel'
-    }]
+    }
 }, {collection: 'user'});
 
 module.exports = UserSchema;
