@@ -13,8 +13,10 @@ findAllSectionsForCourse = courseId =>
 createSection = section =>
     sectionModel.create(section);
 
-findSection = sectionId =>
-    sectionModel.findById(sectionId);
+findSection = sectionId => {
+    return sectionModel.findById(sectionId);
+}
+
 
 enroll = (sectionId) => {
     sectionModel.findById(sectionId).then

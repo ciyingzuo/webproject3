@@ -3,13 +3,7 @@ module.exports = app => {
     const sectionModel = require('../models/section/section.model.server');
 
     app.post('/api/student/:userId/section/:sectionId', (req, res) => {
-        const section = sectionModel.findSection(req.params['sectionId']);
-        if (section.seat == 0) {
-            res.sendStatus(400);
-            return;
-        } else {
-            sectionModel.enroll(req.params['sectionId'])
-        }
+        sectionModel.updateSection(req.body);
         enrollmentModel.enroll(req.params['userId'], req.params['sectionId'])
             .then(section => res.send(section))
     })
@@ -21,7 +15,7 @@ module.exports = app => {
     )
 
     app.delete('/api/student/:userId/section/:sectionId', (req, res) => {
-        sectionModel.drop(req.params['sectionId']);
+        sectionModel.updateSection(req.body);
             enrollmentModel.drop(req.params['userId'], req.params['sectionId'])
                 .then(section => res.send(section))
         }
