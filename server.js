@@ -20,8 +20,9 @@ app.use(session({
   secret: 'any string'
 }));
 
+const mongoURL = 'mongodb://ciyingzuo:cyz1150528664@ds018248.mlab.com:18248/cs4550';
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/local').then(promise => {console.log("Connected with database")});
+mongoose.connect(mongoURL).then(promise => {console.log("Connected with database")});
 
 const userService = require('./services/user.service.server'); //(app);
 userService(app);
