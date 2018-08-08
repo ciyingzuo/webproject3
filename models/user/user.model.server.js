@@ -18,6 +18,10 @@ findUserByIdExpanded = userId =>
         .populate('section')
         .exec();
 
+findUser = user => {
+    return userModel.findOne({username: user.username});
+}
+
 updateUser = user => {
     return userModel.update({_id: user._id}, {emailAddress: user.emailAddress, phoneNumber: user.phoneNumber});
 };
@@ -36,5 +40,6 @@ module.exports = {
     findUserByCredentials,
     deleteUser,
     updateUser,
-    createUser
+    createUser,
+    findUser,
 };

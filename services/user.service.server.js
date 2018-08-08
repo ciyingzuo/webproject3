@@ -19,6 +19,7 @@ module.exports = app => {
 
     logout = (req, res) => {
         req.session.destroy();
+        res.sendStatus(200);
     }
 
     currentUser = (req, res) => {
@@ -50,6 +51,16 @@ module.exports = app => {
         });
     }
 
+    queryUser = (req, res) => {
+        userModel.findUser(req.params['username']).then(user => {
+            if(user !== null){
+                res.sendStatus(400)
+            } else {
+                res.sendStatus(200)
+            }
+        });
+    }
+
     app.get('/logout', logout);
     app.post('/user', createUser);
     app.get('/currentUser', currentUser);
@@ -57,4 +68,5 @@ module.exports = app => {
     app.post('/login', login);
     app.put('/user', updateUser);
     app.delete('/user', deleteUser);
+    app.get('/user/exist/:username', queryUser)
 };

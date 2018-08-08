@@ -19,14 +19,14 @@ findSection = sectionId =>
 enroll = (sectionId) => {
     sectionModel.findById(sectionId).then
     (section => {
-        sectionModel.update({_id: sectionId}, {seat: (section.seat - 1)})
+        sectionModel.update({_id: section._id}, {seat: section.seat - 1})
     });
 }
 
 drop = (sectionId) => {
     sectionModel.findById(sectionId).then
     (section => {
-        sectionModel.update({_id: sectionId}, {seat: (section.seat + 1)})
+        sectionModel.update({_id: section._id}, {seat: (section.seat + 1)})
     });
 }
 

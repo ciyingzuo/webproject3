@@ -4,7 +4,7 @@ module.exports = app => {
 
     app.post('/api/student/:userId/section/:sectionId', (req, res) => {
         const section = sectionModel.findSection(req.params['sectionId']);
-        if (section.seat === 0) {
+        if (section.seat == 0) {
             res.sendStatus(400);
             return;
         } else {
