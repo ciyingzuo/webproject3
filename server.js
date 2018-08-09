@@ -24,7 +24,7 @@ const mongoURL = 'mongodb://ciyingzuo:cyz1150528664@ds018248.mlab.com:18248/cs45
 const LOCALURL = 'mongodb://localhost:27017/local';
 
 const mongoose = require('mongoose');
-mongoose.connect(LOCALURL).then(promise => {console.log("Connected with database")});
+mongoose.connect(mongoURL).then(promise => {console.log("Connected with database")});
 
 const userService = require('./services/user.service.server'); //(app);
 userService(app);
