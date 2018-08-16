@@ -14,9 +14,9 @@ module.exports = app => {
     }
 
     submitQuiz = (req, res) => {
-        // const userId = req.session['currentUser']._id;
+        const userId = req.session['currentUser']._id;
 
-        submissionModel.submit('5b6a219424e8a422803bfac4', req.params['quizId'], req.body).then(res.sendStatus(200))
+        submissionModel.submit(userId, req.params['quizId'], req.body).then(res.sendStatus(200))
     }
 
     findSubmissionByQuizId = (req, res) => {
