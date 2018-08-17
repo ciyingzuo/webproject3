@@ -7,7 +7,7 @@ const HEROKU = "https://ciyingzuo-webdev-hw4client.herokuapp.com";
 const LOCAL = "http://localhost:4200";
 
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", HEROKU);
+  res.header("Access-Control-Allow-Origin", LOCAL);
   res.header("Access-Control-Allow-Credentials", "true");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
